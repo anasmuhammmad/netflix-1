@@ -5,14 +5,16 @@ import axios from '../../axios.js'
 function Banner() {
     const [movie,setMovie] = useState();
     useEffect(() => {
-        axios.get(`/trending/all/week?api_key=${API_KEY}&language=en-US`).then((response) =>{
+        axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}&language=en-US`).then((response) =>{
             const movies = response.data.results;
             const randomIndex = Math.floor(Math.random() * movies.length);
             const randomMovie = movies[randomIndex];
             console.log(randomMovie);
             setMovie(randomMovie);
         })
-      
+        // .catch((error) => {
+        //     console.error("Error fetching data:", error);
+        //   });
     }, []);
     return (
         <div
